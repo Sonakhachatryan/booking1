@@ -47,4 +47,14 @@ class Restaurant extends Model
     /**
      * @return array
      */
+
+    public function parkings()
+    {
+        return $this->morphMany(Parking::class, 'parkingable');
+    }
+
+    public function offers()
+    {
+        return $this->morphMany(Offer::class, 'offerable');
+    }
 }

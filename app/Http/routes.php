@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('hhhh',function(){
     return view('restaurant.upload');
 });
@@ -82,4 +81,14 @@ Route::group(['prefix' => 'admin/restaurant', 'namespace' => 'Admin\Restaurant']
     Route::post('avatar','RestaurantController@changeAvatar');
     Route::post('images/add','RestaurantController@addImage');
     Route::get('image/remove/{id}','RestaurantController@removeImage');
+
+    Route::get('parking-details','RestaurantController@parkingDetails');
+    Route::post('parking-details/edit/{id}','RestaurantController@editParkingDetails');
+    Route::get('parking-details/create','RestaurantController@getCreateParkingDetails');
+    Route::post('parking-details/create','RestaurantController@postCreateParkingDetails');
+    Route::get('parking-details/delete/{id}','RestaurantController@deleteParkingDetails');
+
+    Route::resource('offers', 'OffersController');
 });
+
+
