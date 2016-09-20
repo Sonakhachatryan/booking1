@@ -17,6 +17,8 @@ class CreateOffersTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('content');
+            $table->integer('offerable_id')->unsigned();
+            $table->string('offerable_type');
             $table->softDeletes();
             $table->timestamps();
         });

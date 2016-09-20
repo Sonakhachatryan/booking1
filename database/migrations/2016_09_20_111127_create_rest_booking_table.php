@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCinemaOffersTable extends Migration
+class CreateRestBookingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +12,22 @@ class CreateCinemaOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('cinema_offer', function (Blueprint $table) {
+        Schema::create('rest_booking', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cinema_id')->unsigned();
-            $table->foreign('cinema_id')
+            $table->integer('restaurant_id')->unsigned();
+            $table->foreign('restaurant_id')
                 ->references('id')
-                ->on('cinemas')
+                ->on('restaurants')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->integer('offer_id')->unsigned();
-            $table->foreign('offer_id')
+            $table->integer('table_id')->unsigned();
+            $table->foreign('table_id')
                 ->references('id')
-                ->on('offers')
+                ->on('tables')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->integer('count');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
@@ -38,6 +39,6 @@ class CreateCinemaOffersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cinema_offer');
+        Schema::drop('rest_booking');
     }
 }

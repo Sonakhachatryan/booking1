@@ -66,6 +66,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
     Route::get('/admins/activate/{id}','AdminsController@activate');
     Route::resource('admins', 'AdminsController');
 
+
+
+
 });
 
 Route::group(['prefix' => 'admin/restaurant', 'namespace' => 'Admin\Restaurant'], function(){
@@ -89,6 +92,9 @@ Route::group(['prefix' => 'admin/restaurant', 'namespace' => 'Admin\Restaurant']
     Route::get('parking-details/delete/{id}','RestaurantController@deleteParkingDetails');
 
     Route::resource('offers', 'OffersController');
+
+    Route::resource('kitchens', 'KitchensController');
 });
+
 
 

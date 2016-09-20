@@ -7,6 +7,7 @@
     <li><a href="{{ url('admin/restaurant/images') }}"><i class='fa fa-link'></i> <span>Images</span></a></li>
     <li><a href="{{ url('admin/restaurant/parking-details') }}"><i class='fa fa-link'></i> <span>Parking details</span></a></li>
     <li><a href="{{ url('admin/restaurant/offers') }}"><i class='fa fa-link'></i> <span>Offers</span></a></li>
+    <li><a href="{{ url('admin/restaurant/kitchens') }}"><i class='fa fa-link'></i> <span>Kitchens</span></a></li>
     <li class="treeview">
         <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">

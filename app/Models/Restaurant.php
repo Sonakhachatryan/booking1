@@ -57,4 +57,9 @@ class Restaurant extends Model
     {
         return $this->morphMany(Offer::class, 'offerable');
     }
+    
+    public function kitchens()
+    {
+        return $this->belongsToMany(Kitchen::class,'restaurant_kitchen');
+    }
 }

@@ -19,7 +19,7 @@ class OffersController extends RestaurantController
      */
     public function index()
     {
-        $offers = $this->restaurant->offers()->paginate(2);
+        $offers = $this->restaurant->offers()->paginate(15);
         
         return view('restaurant.offers.index',compact('offers'));
     }
@@ -143,6 +143,6 @@ class OffersController extends RestaurantController
     {
         $offer = Offer::find($id);
 
-        return $offer->offerable_type == 'App\Models\Offer' && $offer->offerable_id == $this->restaurant->id;
+        return $offer->offerable_type == 'App\Models\Restaurant' && $offer->offerable_id == $this->restaurant->id;
     }
 }

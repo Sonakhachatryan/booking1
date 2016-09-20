@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRestaurantOffersTable extends Migration
+class CreteBusyTablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +12,7 @@ class CreateRestaurantOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_offer', function (Blueprint $table) {
+        Schema::create('busy_tables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('restaurant_id')->unsigned();
             $table->foreign('restaurant_id')
@@ -21,12 +20,14 @@ class CreateRestaurantOffersTable extends Migration
                 ->on('restaurants')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->integer('offer_id')->unsigned();
-            $table->foreign('offer_id')
+            $table->integer('table_id')->unsigned();
+            $table->foreign('table_id')
                 ->references('id')
-                ->on('offers')
+                ->on('tables')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->integer('count');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
@@ -38,6 +39,6 @@ class CreateRestaurantOffersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('restaurant_offer');
+        Schema::drop('busy_tables');
     }
 }

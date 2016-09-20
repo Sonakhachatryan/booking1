@@ -25,5 +25,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="{{ url('/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+
+    {{--<script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>--}}
     @yield('style')
 </head>

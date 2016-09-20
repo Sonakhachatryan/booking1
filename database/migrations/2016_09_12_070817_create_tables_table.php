@@ -16,9 +16,8 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('restaurant_id');
-            $table->string('count');
-            $table->string('available_for_order');
-            $table->string('people_count');
+            $table->integer('count');
+            $table->integer('people_count');
             $table->decimal('price', 5, 2);
             $table->timestamps();
         });
