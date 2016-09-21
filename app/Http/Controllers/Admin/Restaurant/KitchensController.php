@@ -18,9 +18,12 @@ class KitchensController extends RestaurantController
      *
      * @return \Illuminate\View\View
      */
+
+    protected $peginate=5;
+
     public function index()
     {
-        $restKitchens = $this->restaurant->kitchens()->paginate(15);
+        $restKitchens = $this->restaurant->kitchens()->paginate($this->peginate);
         $kitchens = Kitchen::with('restaurants')->get();
         $kitchens = $kitchens->filter(function($kitchen){
             foreach($kitchen->restaurants as $restaurant)
@@ -57,12 +60,21 @@ class KitchensController extends RestaurantController
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
         RestaurantKitchen::where(['kitchen_id' => $id, 'restaurant_id' => $this->restaurant->id ])->delete();
 
         Session::flash('success', 'Kitchen deleted!');
 
-        return redirect('admin/restaurant/kitchens');
+        $current_page=$request->input('current_page');
+
+        $count = $this->restaurant->kitchens()->count();
+
+        $count = ceil($count/$this->peginate);
+        if($current_page>$count){
+            $current_page = $count;
+        }
+
+        return redirect('admin/restaurant/kitchens?page=' . $current_page);
     }
 }

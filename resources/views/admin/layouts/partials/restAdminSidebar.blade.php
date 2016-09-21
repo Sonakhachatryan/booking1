@@ -9,10 +9,10 @@
     <li><a href="{{ url('admin/restaurant/offers') }}"><i class='fa fa-link'></i> <span>Offers</span></a></li>
     <li><a href="{{ url('admin/restaurant/kitchens') }}"><i class='fa fa-link'></i> <span>Kitchens</span></a></li>
     <li class="treeview">
-        <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class='fa fa-link'></i> <span>Tables</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-            <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+            <li><a href="{{ url('admin/restaurant/tables') }}"> Table Management</a></li>
+            <li><a href="{{ url('admin/restaurant/tables/booked') }}"> Booked Tables</a></li>
         </ul>
     </li>
 </ul><!-- /.sidebar-menu -->

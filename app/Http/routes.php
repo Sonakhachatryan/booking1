@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
     Route::resource('admins', 'AdminsController');
 
 
-
+    Route::resource('kitchens', 'KitchensController');
 
 });
 
@@ -94,7 +94,10 @@ Route::group(['prefix' => 'admin/restaurant', 'namespace' => 'Admin\Restaurant']
     Route::resource('offers', 'OffersController');
 
     Route::resource('kitchens', 'KitchensController');
+
+    Route::resource('tables', 'TablesController');
 });
+
 
 
 

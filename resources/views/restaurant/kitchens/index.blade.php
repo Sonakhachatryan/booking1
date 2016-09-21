@@ -7,6 +7,7 @@
 @section('content')
     {{--<div class="container">--}}
     @include('layouts.messages')
+    <div class="messages"></div>
     <h1>Add Kitchens</h1>
 
     {!! Form::open(['url' => '/admin/restaurant/kitchens', 'class' => 'form-horizontal']) !!}
@@ -49,31 +50,15 @@
                 <td>{{ $restKitchens->perPage()*($restKitchens->currentPage()-1)+$x }}</td>
                 <td>{{ $item->name }}</td>
                 <td>
-                    {!! Form::open([
-                        'method'=>'DELETE',
-                        'url' => ['admin/restaurant/kitchens', $item->id],
-                        'style' => 'display:inline'
-                    ]) !!}
-                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Offer" />', array(
-                            'type' => 'submit',
-                            'class' => 'btn btn-danger btn-xs',
-                            'title' => 'Delete Offer',
-                            'onclick'=>'return swal({
-  title: "Are you sure?",
-  text: "You will not be able to recover this imaginary file!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "Yes, delete it!",
-  closeOnConfirm: false,
-  html: false
-}, function(){
-  swal("Deleted!",
-  "Your imaginary file has been deleted.",
-  "success");
-})'
-                    )) !!}
-                    {!! Form::close() !!}
+                    <form method="post" action="{{url('/admin/restaurant/kitchens/'.$item->id)}}" style = 'display:inline'>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="current_page" value="{{$restKitchens->currentPage()}}">
+                        <button id="delete_kitchen" hidden type="submit"></button>
+                        <button type ='button' data="{{csrf_token()}}" value="{{ $item->id }}" class = 'delete btn btn-danger btn-xs' title = 'Delete Offer'>
+                            <span class="delete glyphicon glyphicon-trash" aria-hidden="true" title="Delete Offer" />
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
@@ -87,8 +72,23 @@
     <script type="text/javascript">
         $('select').select2();
 
-        //        $(document).ready(function() {
-        //            $(".js-example-basic-multiple").select2();
-        //        });
+        $(".delete").on('click',function() {
+
+            var id = $(this).val();
+            var token = $(this).attr('data');
+            var method = 'DELETE';
+            swal({
+                title: "Are you sure?",
+                text: "The Client Will be Removed to X!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, remove it!",
+                closeOnConfirm: false
+            }, function () {
+
+                $('#delete_kitchen').click();
+            })
+        })
     </script>
 @endsection

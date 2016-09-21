@@ -15,7 +15,12 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('restaurant_id');
+            $table->integer('restaurant_id')->unsigned();
+            $table->foreign('restaurant_id')
+                ->references('id')
+                ->on('restaurants')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->integer('count');
             $table->integer('people_count');
             $table->decimal('price', 5, 2);
