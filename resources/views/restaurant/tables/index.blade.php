@@ -5,16 +5,19 @@
 
     <h1>Tables <a href="{{ url('admin/restaurant/tables/create') }}" class="btn btn-primary btn-xs"
                   title="Add New Table"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a></h1>
+    <div id="messages">
     @include('layouts.messages')
+    </div>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>
             <tr>
-                <th>S.No</th>
-                <th> People Count</th>
-                <th> Price</th>
-                <th> Count</th>
-                <th>Actions</th>
+                <th> S.No </th>
+                <th> People Count </th>
+                <th> Count </th>
+                <th> Available </th>
+                <th> Price </th>
+                <th> Actions </th>
             </tr>
             </thead>
             <tbody>
@@ -23,8 +26,9 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $tables->perPage()*($tables->currentPage()-1)+$x }}</td>
-                    <td>{{ $item->count }}</td>
                     <td>{{ $item->people_count }}</td>
+                    <td>{{ $item->count }}</td>
+                    <td>{{ $item->available }}</td>
                     <td>{{ $item->price }}</td>
                     <td>
                         <a href="{{ url('admin/restaurant/tables/' . $item->id) }}" class="btn btn-success btn-xs"
@@ -53,4 +57,12 @@
     </div>
 
     {{--</div>--}}
+@endsection
+
+@section('script')
+    <script>
+        setTimeout(function() {
+            $("#messages").fadeOut("slow").empty();
+        }, 5000);
+    </script>
 @endsection

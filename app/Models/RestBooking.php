@@ -4,20 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Table extends Model
+class RestBooking extends Model
 {
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'tables';
+    protected $table = 'rest_booking';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +26,10 @@ class Table extends Model
      *
      * @var array
      */
-    protected $fillable = ['restaurant_id','count', 'price', 'people_count','available'];
-
+    protected $fillable = [
+        'restaurant_id',
+        'people_count',
+        'date',
+    ];
     
 }

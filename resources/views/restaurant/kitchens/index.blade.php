@@ -1,4 +1,3 @@
-{{--{{ dd($offers) }}--}}
 @extends('admin.layouts.app')
 
 @section('style')

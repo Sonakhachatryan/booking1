@@ -26,6 +26,13 @@
             {!! $errors->first('count', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('available') ? 'has-error' : ''}}">
+        {!! Form::label('available', 'Available', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-6">
+            {!! Form::number('available', null, ['class' => 'form-control']) !!}
+            {!! $errors->first('available', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
     <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
         {!! Form::label('price', 'Price', ['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-6">

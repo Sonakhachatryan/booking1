@@ -20,13 +20,7 @@ class CreateRestBookingTable extends Migration
                 ->on('restaurants')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->integer('table_id')->unsigned();
-            $table->foreign('table_id')
-                ->references('id')
-                ->on('tables')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('count');
+            $table->integer('people_count');
             $table->dateTime('date');
             $table->timestamps();
         });

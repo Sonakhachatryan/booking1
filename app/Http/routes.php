@@ -96,7 +96,10 @@ Route::group(['prefix' => 'admin/restaurant', 'namespace' => 'Admin\Restaurant']
     Route::resource('kitchens', 'KitchensController');
 
     Route::resource('tables', 'TablesController');
+
+    Route::resource('bookings', 'BookingsController',['except' => ['create','store','destroy']]);
 });
+
 
 
 

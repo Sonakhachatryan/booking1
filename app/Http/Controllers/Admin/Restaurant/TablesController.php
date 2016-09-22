@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Restaurant\RestaurantController;
 
 use App\Models\Table;
+use App\Models\RestBooking;
 use Illuminate\Http\Request;
 use Session;
+use Carbon\Carbon;
 
 class TablesController extends RestaurantController
 {
@@ -52,6 +54,8 @@ class TablesController extends RestaurantController
 
         $requestData = $request->all();
         $requestData['restaurant_id'] = $this->restaurant->id;
+        $requestData['available'] = $request->count;
+        
         Table::create($requestData);
 
         Session::flash('success', 'Table added!');
@@ -101,6 +105,7 @@ class TablesController extends RestaurantController
             'people_count' => 'required|numeric',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
+            'available' => 'required|numeric',
         ]);
 
         $requestData = $request->all();

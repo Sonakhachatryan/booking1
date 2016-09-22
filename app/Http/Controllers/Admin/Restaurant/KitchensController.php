@@ -19,11 +19,11 @@ class KitchensController extends RestaurantController
      * @return \Illuminate\View\View
      */
 
-    protected $peginate=5;
+    protected $paginate=15;
 
     public function index()
     {
-        $restKitchens = $this->restaurant->kitchens()->paginate($this->peginate);
+        $restKitchens = $this->restaurant->kitchens()->paginate($this->paginate);
         $kitchens = Kitchen::with('restaurants')->get();
         $kitchens = $kitchens->filter(function($kitchen){
             foreach($kitchen->restaurants as $restaurant)
@@ -70,7 +70,7 @@ class KitchensController extends RestaurantController
 
         $count = $this->restaurant->kitchens()->count();
 
-        $count = ceil($count/$this->peginate);
+        $count = ceil($count/$this->paginate);
         if($current_page>$count){
             $current_page = $count;
         }
